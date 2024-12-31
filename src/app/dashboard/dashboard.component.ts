@@ -115,7 +115,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         },
         error: error => console.error('Error fetching weather:', error)
       });
-    console.log(this.nearbyPlacesWeather);
     this.subscriptions.push(subscription);
   }
 
@@ -178,7 +177,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const labelColor = getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
     const legendColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
     let timeLabelsnew: string[] = [];
-    console.log(timeLabels);
     if (timeLabels.length === 8) {
       timeLabelsnew = timeLabels.map(dateString =>
         this.datePipe.transform(dateString, 'HH:mm') || ''
@@ -355,7 +353,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   AddToBookmarks() {
-    console.log(this.locations.length);
     if (this.locations.length >= 10) {
       this.ErrorAlert("Bookmarks", 'You can bookmark maximum 10 loactions');
     } else if (this.locations.includes(this.currentCity)) {
@@ -370,7 +367,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openWeatherForBookmark(i: number) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const city = this.locations[i];
-    console.log(city);
     this.fetchWeatherByCity(city);
   }
 
@@ -394,7 +390,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   onLocationChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     let selectedValue = selectElement.value;
-    console.log('Selected Value:', selectedValue);
     if (selectedValue != "") {
       this.searchForm.get('city')?.setValue(selectedValue);
       this.fetchWeatherByCity(selectedValue);
