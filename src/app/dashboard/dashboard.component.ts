@@ -374,6 +374,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.bookmarkService.deleteBookmark(city);
     this.locations = this.bookmarkService.getBookmarks();
     this.ErrorAlert("Bookmarks", 'Removed from bookmarks successfully!');
+    this.selectLocation = "";
   }
 
   ErrorAlert(header: string, message: String) {
