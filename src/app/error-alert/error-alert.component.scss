@@ -1,0 +1,29 @@
+.errorDiv {
+    max-width: 300px;
+    padding: 16px;
+    min-width: 250px;
+    color: var(--text-color);
+    background-color: var(--background-color);
+
+    .errorCloseImage {
+        position: absolute;
+        top: 20px;
+        height: 30px;
+        width: 30px;
+        right: 20px;
+        z-index: 1;
+    }
+
+    .errorHeader {
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .errorMessage {
+        margin-top: 20px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+}

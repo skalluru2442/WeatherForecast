@@ -1,0 +1,248 @@
+.dashboard-container {
+    min-height: calc(100vh - 40px);
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: lightseagreen;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-right form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    margin-right: 8px;
+    background: transparent;
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+.search-button {
+    padding: 8px 16px;
+    background-color: #fff;
+    color: lightseagreen;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #e6e6e6;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-right form {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .search-input {
+        flex: 1;
+        width: 70%;
+    }
+
+    .search-button {
+        width: auto;
+    }
+
+    .left_content {
+        width: 100%;
+        border-right: none;
+        display: flex;
+        flex-wrap: wrap;
+        .left_content_weather {
+            width: 100% !important;
+        }
+        .right_content_weather {
+            width: 100% !important;
+            text-align: center;
+        }
+    }
+}
+
+input:focus {
+    outline: none;
+}
+
+.toggleButton {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+
+    img {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 1;
+}
+
+.content {
+    display: flex;
+
+    .left_content {
+        width: 450px;
+        border-right: 2px solid var(--text-color);
+        padding-top: 80px;
+        display: block;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 5px;
+
+        .left_content_weather {
+            display: block;
+            form {
+                padding-left: 16px;
+            }
+            .temp_text {
+                text-align: center;
+                font-size: 60px;
+                font-weight: 500;
+                line-height: 40px;
+                margin: 40px;
+    
+                span {
+                    font-size: 30px;
+                }
+            }
+        }
+        .right_content_weather {
+            padding-left: 16px;
+        }
+    }
+
+    .right_content {
+        width: calc(100% - 450px);
+        padding: 40px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .content {
+        display: block;
+
+        .left_content {
+            width: 100%;
+            border-right: none;
+            display: flex;
+            flex-wrap: wrap;
+            .left_content_weather {
+                width: 50%;
+            }
+            .right_content_weather {
+                padding-left: 0;
+                width: 50%;
+                text-align: center;
+            }
+        }
+
+        .right_content {
+            width: 100%;
+            padding: 0;
+        }
+
+        .current_chart_div {
+            width: calc(100% - 40px);
+        }
+    }
+}
+
+.current_chart_div {
+    position: relative;
+    width: calc(100% - 40px);
+    height: 300px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.bookmark_btn {
+    padding: 10px;
+    img {
+        height: 20px;
+    }
+}
+
+.nearbyplaces {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    .nearbyitem {
+        width: 200px;
+        padding: 16px;
+        margin: 10px;
+        border: 1px solid var(--text-color);
+        border-radius: 5px;
+    }
+}
+
+.bookmark_list {
+    padding: 20px;
+}
+
+.locationtext {
+    cursor: pointer;
+}
+
+.delete_bookmark_img {
+    cursor: pointer;
+    height: 25px;
+    vertical-align: middle;
+}
+
+.bookmarks_select {
+    width: 120px;
+    position: absolute;
+    right: 76px;
+    top: 30px;
+    select {
+        color: var(--text-color);
+        background-color: var(--primary-color);
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+}

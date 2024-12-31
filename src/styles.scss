@@ -1,1 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* Default Light Theme */
+:root {
+    --background-color: #ffffff;
+    --background: url('./assets/light.png') no-repeat center center fixed;
+    --background-size: cover;
+    --background-blend-mode: normal;
+    --text-color: #000000;
+    --primary-color: #F4EBDC;
+}
+
+/* Dark Theme */
+:root.dark-mode {
+    --background-color: #000000;
+    --background: url('./assets/dark.png') no-repeat center center fixed;
+    --background-size: cover;
+    --background-blend-mode: normal;
+    --text-color: #ffffff;
+    --primary-color: #72A1B8;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-image: var(--background);
+    background-size: var(--background-size);
+    background-blend-mode: var(--background-blend-mode);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+button {
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modeBackground {
+    background: var(--background);
+    background-size: var(--background-size);
+    background-blend-mode: var(--background-blend-mode);
+}
+
+input:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}

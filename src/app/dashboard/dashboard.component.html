@@ -1,0 +1,88 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="dashboard-container modeBackground">
+    @if (locations.length > 0) {
+        <div class="bookmarks_select">
+            <label for="location">Bookmarks List</label><br>
+            <select name="location" id="location" [(ngModel)]="selectLocation" matTooltip="Bookmarks List" (change)="onLocationChange($event)">
+                <option value="">Select Location</option>
+                <option *ngFor="let location of locations" [value]="location">{{location}}</option>
+            </select>
+        </div>
+    }
+    <div class="content">
+        <div class="left_content">
+            <div class="left_content_weather">
+                <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <input type="text" formControlName="city" placeholder="Enter City" class="search-input" required />
+                    <button type="submit">Search</button>
+                </form>
+                <p class="temp_text">{{(currentWeatherData.main.temp - 273.15) | number: '1.0-0'}}°C
+                    <br>
+                    <span>Wind: {{(currentWeatherData.wind.speed) | number: '1.0-0'}}mph</span>
+                </p>
+            </div>
+            <div class="right_content_weather">
+                <p>
+                    City: {{currentWeatherData.name}}
+                    <button *ngIf="!isCityBookmarked(currentWeatherData.name)" class="bookmark_btn" (click)="AddToBookmarks()" matTooltip="Bookmark City">
+                        <img [src]="themeService.getCurrentMode() ? 'assets/icon_bookmark_light.png' : 'assets/icon_bookmark_dark.png'" />
+                    </button>
+                    <button *ngIf="isCityBookmarked(currentWeatherData.name)" class="bookmark_btn" (click)="deleteBookmark(currentWeatherData.name)" matTooltip="Remove From Bookmarks">
+                        <img src="assets/delete.png">
+                    </button>
+                </p>
+                <p>Weather: {{currentWeatherData.weather[0].main}}</p>
+                <p>Date: {{ (currentWeatherData.dt * 1000) | date: 'yyyy-MM-dd' }}</p>
+                <p>SunRise: {{ (currentWeatherData.sys.sunrise * 1000) | date: 'HH:mm:ss' }}</p>
+                <p>SunSet: {{ (currentWeatherData.sys.sunset * 1000) | date: 'HH:mm:ss' }}</p>
+            </div>
+        </div>
+        <div class="right_content">
+            <h1>Weather Forecast (24 hour)</h1>
+            <div class="current_chart_div">
+                <canvas id="lineChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <button (click)="toggleTheme()" class="toggleButton" matTooltip="Toggle Theme">
+        <img [src]="themeService.getCurrentMode() ? 'assets/icon_light.png' : 'assets/icon_dark.png'" alt="">
+    </button>
+    <div>
+        <h1>Weather Forecast (5 Day)</h1>
+        <div class="current_chart_div">
+            <canvas id="lineChart5Day"></canvas>
+        </div>
+    </div>
+    @if (nearByPlacesList.length > 0) {
+        <div>
+            <h1>Near By Places</h1>
+            <div class="nearbyplaces">
+                <div class="nearbyitem" *ngFor="let place of nearByPlacesList; let i=index">
+                    <div>
+                        Place: {{place.name}} <br>
+                        Distance: {{place.distance}}m away <br>
+                        <ng-container *ngIf="nearbyPlacesWeather[i]?.main; else loading">
+                            Temp: {{(nearbyPlacesWeather[i].main.temp - 273.15) | number: '1.0-0'}}°C <br>
+                            Wind: {{(nearbyPlacesWeather[i].wind.speed) | number: '1.0-0'}}mph <br>
+                        </ng-container>
+                        <ng-template #loading>
+                            <span>Loading weather...</span>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    <!-- @if (locations.length > 0) {
+    <div>
+        <h1>Bookmarks List</h1>
+        <div class="nearbyplaces">
+            <div class="nearbyitem" *ngFor="let location of locations; let i=index">
+                <span class="locationtext" (click)="openWeatherForBookmark(i)">{{location}}</span>
+                <img class="delete_bookmark_img" (click)="deleteBookmark(i)"
+                    src="../../assets/delete.png" alt="">
+            </div>
+        </div>
+    </div>
+    } -->
+</div>
